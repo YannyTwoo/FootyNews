@@ -1,0 +1,58 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/navbar.ejs') %>
+
+    <div id="full">
+        
+        <div class="section">
+            <h2>Click On Your Team</h1>
+            <div id="teambox">
+                <form>
+                    <img class="team" name="arsenal" src="arsenal.png">
+                    <img class="team" name="chelsea" src="chelsea.png">
+                    <img class="team" name="liverpool" src="liverpool.png">
+                    <img class="team" name="Manchester United" src="Manchester United.png">
+                </form>
+            </div>
+        </div>
+        <div id = 'news-root' class='container'>
+            <% if(typeof(news) != 'undefined'){ %>
+            <% news.forEach((i) =>{ %>
+            <div class='news-card'>
+                <a href="<%= i.url %>" target="_blank"><img src= "<%= i.urlToImage %>" alt="Image here">
+                <h2><%= i.title%></h2></a>
+                <p><%= i.publishedAt%></p>
+                <p><%= i.content%></p>
+            </div>
+            <% }) %>
+        
+            <% }else {%>
+                <div class="news-card">
+                    <h1>No News Found | Click On Your Team</h1>
+                </div>
+            <% } %>
+        </div>
+
+    </div>
+        <script defer>
+            const whichImages = document.querySelectorAll('.team');
+            const chosenTeam = document.querySelector('#teamchanger');
+
+            Array.from(whichImages).forEach((img) => {
+                img.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    bod = { teamname : img.name}
+                    fetch('/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(bod)
+                    })
+                    setTimeout(window.location.reload() , 500)
+                    
+                    // chosenTeam.src= img.name + ".png" ;
+                })
+            })
+        </script>
+
+<%- include('partials/footer.ejs') %>
