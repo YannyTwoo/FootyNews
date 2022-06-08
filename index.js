@@ -2,7 +2,9 @@ const express = require('express');
 const ejs = require('ejs')
 const bodyParser = require('body-parser');
 const newsApi = require('newsapi');
+const session = require('express-session')
 const cors = require('cors');
+
 
 
 require('dotenv').config();
@@ -15,7 +17,11 @@ const PORT = process.env.PORT || 2100;
 app.use(express.json());
 app.use(express.static('public'))
 app.use(cors())
-
+app.use(session({
+    secret: 'secret-key',
+    resave: false,
+    saveUninitialized: false,
+}))
 app.set('view engine', 'ejs');
 
 
@@ -28,13 +34,6 @@ app.route('/')
         res.render('index', {news:news , teamname:teamname});
     })
     .post((req, res) => {
-
-        // const {parcel} = req.body;
-        // if(!parcel){
-        //     return res.status(400).send({status:'failed'})
-        // }
-        // res.status(200).send({status:'received'})
-
         newsapi.v2.topHeadlines({
             q: req.body.teamname,
             category: 'sports',
@@ -42,14 +41,12 @@ app.route('/')
             country: 'gb'
         })
         .then(response => {
-            console.log("response stat: " + response.articles);
-            console.log("\nresponse : " + response.totalResults);
+            console.log(`${req.body.teamname} was clicked`)
             news = response.articles
-
-            res.render('index', {news:news});
+            res.render('index', {news:news , teamname:teamname});
         })
         
-        console.log(news)
+        // console.log(news)
 
     })
 
