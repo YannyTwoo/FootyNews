@@ -158,15 +158,24 @@ grid-column-gap: 9px; */
     flex-direction: column;
     justify-content: center;
 
-    color: #fff;
-    background-color: #444;
+    color: black;
+    background-color: #11AFFA50!important;
     padding: 1rem;
     margin: 1rem;
     border-radius: 1rem;
 
     max-width: 30rem;
 }
+.card2 h3{
+    color: black;
+}
+.ReadMore{
+    background-color: #274ED960!important;
+    border-radius: 2px;
+    padding: 0 2px 0;
+}
 .card2img{
-    width: 100%;
+    max-width:100%;
+    max-height:100%;
     z-index: -1;
 }
