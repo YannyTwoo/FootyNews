@@ -140,7 +140,7 @@ grid-column-gap: 9px; */
 #footer{
     text-align: center;
     /* margin-top: auto; */
-    margin: 2rem 0 1rem 0; /* top left bottom right i.e CLOCKWISE*/
+    margin: auto 0 1rem 0; /* top left bottom right i.e CLOCKWISE*/
     /* if there are 3: top left&right bottom */
 }
 
