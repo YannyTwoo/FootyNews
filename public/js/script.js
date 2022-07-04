@@ -39,7 +39,7 @@ document.querySelector('#yet2add').addEventListener('click',(e)=>{
 Array.from(whichImages).forEach((img) => {
     img.addEventListener('click', (e) => {
         e.preventDefault();
-        bod = { teamname : img.name}
+        bod = { "teamname" : img.name}
         fetch('/', {
             method: 'POST',
             headers: {
@@ -47,7 +47,13 @@ Array.from(whichImages).forEach((img) => {
             },
             body: JSON.stringify(bod)
         })
-        setTimeout(window.location.reload() , 500)
+        setTimeout(window.location.reload() , 1000)
+
+
+
+        // window.location.reload()
+
+
         // chosenTeam.src= img.name + ".png" ;
     })
 })
