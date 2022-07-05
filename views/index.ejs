@@ -1,0 +1,40 @@
+<%- include('partials/header.ejs') %>
+    <%- include('partials/navbar.ejs') %>
+
+        <div id="full">
+            <div class="section"><h2>Click On Your Team</h1>
+                    <div id="teambox">
+                        <form>
+                            <img class="team" name="arsenal" src="arsenal.png">
+                            <img class="team" name="chelsea" src="chelsea.png">
+                            <img class="team" name="liverpool" src="liverpool.png">
+                            <img class="team" name="Manchester United" src="Manchester United.png">
+                        </form>
+                    </div>
+            </div>
+            <div id="card2collection">
+                <% if(typeof(news) !='undefined' ){ %>
+                    <% news.forEach((i)=>{ %>
+                        <div class="card2">
+                            <a href="<%= i.url %>" target="_blank">
+                                <img class="card2img" src="<%= i.urlToImage %>" alt="Couldn't load the Image">
+                                <h3>
+                                    <%= i.title%>
+                                </h3>
+                            </a>
+                            <p class="date">
+                                <%= i.publishedAt%>
+                            </p>
+                            <p>
+                                <%= i.content%>
+                            </p>
+                            <a href="<%= i.url %>"><span class="ReadMore">Read More</span></a>
+                        </div>
+                    <% }) %>
+                <% }else {%>
+                    <div class="card2">
+                        <h1 style="text-align:center">No News Found | Click On Your Team</h1>
+                    </div>
+                <% } %>
+            </div>
+            <%- include('partials/footer.ejs') %>

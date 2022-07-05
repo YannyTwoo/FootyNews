@@ -1,0 +1,65 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+
+    background-color: white;
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+
+
+#nav{
+    background-color: red;
+    margin: 0;
+    padding: 0;
+
+    gap: 1rem;
+    flex-wrap: nowrap;
+
+}
+#nav li{
+    list-style-type: none;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+}
+.stayleft{
+    justify-content: flex-start;
+}
+.stayright{
+    /* justify-content: flex-end; */
+    margin-left: auto
+}
+
+
+
+img{
+    max-width: 100px;
+}
+.section{
+    justify-content: center;
+    background-color: aqua;
+}
+
+
+#newsroot{
+    background-color: blueviolet;
+}
+.news{
+    /* width: 50%; */
+    padding: 40px;
+}
+
+
+#footer{
+    text-align: center;
+    /* margin-top: auto; */
+    margin: auto 0 0 1rem;
+}
