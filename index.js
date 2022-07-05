@@ -6,6 +6,8 @@ const session = require('express-session')
 const axios = require('axios')
 const cors = require('cors');
 
+const deasync = require('deasync');
+
 
 
 require('dotenv').config();
@@ -32,29 +34,42 @@ const country = 'gb';
 const language = 'en'
 
 
-getNews = (team) =>{
-    newsapi.v2.topHeadlines({
-        q: team,
-        category: 'sports',
-        language: 'en',
-        country: 'gb'
-    })
-    .then(response => {
-        console.log(`${team} was clicked`)
-        news = response.articles
-        // res.redirect('/');
-    })
-}
+// deasync( getNews = (team)=>{
+//     console.log('OK');
+//     newsapi.v2.topHeadlines({
+//         q: team,
+//         category: 'sports',
+//         language: 'en',
+//         country: 'gb'
+//     })
+//     .then(response => {
+//         console.log(`${team} was clicked`)
+//         news = response.articles
+//         // res.redirect('/');
+//     })
+// }) 
 
 app.route('/')
     .get((req, res) => {
-        res.render('index', {news:news , teamname:teamname});
+        res.render('index', { news: news, teamname: teamname });
     })
     .post( (req, res) => {
-        getNews(req.body.teamname);
-        // sleep(500);
-        console.log('rendering now')
-        res.render('index', {news:news , teamname:teamname})
+        // getNews(req.body.teamname);
+        team = req.body.teamname
+
+        newsapi.v2.topHeadlines({
+            q: req.body.teamname,
+            category: 'sports',
+            language: 'en',
+            country: 'gb'
+        })
+            .then(response => {
+                // console.log(`${team} was clicked`)
+                news = response.articles
+                res.json({status:200})
+                // res.render('index', {news:news , teamname:teamname})
+            })
+        
         // console.log(news)
 
     })

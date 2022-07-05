@@ -45,9 +45,24 @@ Array.from(whichImages).forEach((img) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(bod)
+            body: JSON.stringify(bod),
+            success:function(data){
+              console.log(data);
+            }
         })
-        setTimeout(window.location.reload() , 1000)
+        .then(response => response.json())
+        .then(data =>{
+          // console.log(data.news)
+          if(data.status === 200){
+            window.location.reload()   
+
+          } else{
+            alert('An error occured when we were trying to get the data for you :(')
+            // present this nicely by changing the data in a html tag
+          }
+        })
+
+        // setTimeout(window.location.reload , 3000)
 
 
 
